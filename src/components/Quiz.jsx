@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { decode } from "html-entities"
 
 export default function Quiz(props) {
     const [quizComplete, setQuizComplete] = useState(false)
@@ -50,14 +51,14 @@ export default function Quiz(props) {
                     }}
                     style={getStyle(answer, quizComplete)}
                 >
-                    {answer.option}
+                    {decode(answer.option)}
                 </button>
             )
         })
 
         return (
             <div className="question--container" key={index}>
-                <p className="quiz--question">{item.question}</p>
+                <p className="quiz--question">{decode(item.question)}</p>
                 <div className="question--options">{answerElements}</div>
             </div>
         )
