@@ -73,7 +73,7 @@ export default function Quiz(props) {
             userAnswers.includes(answer)
         ).length
         const result = `You scored ${numberCorrect} out of ${quizData.length} correct answers`
-        return <p className="quiz--result">{result}</p>
+        return <p className="quiz--score">{result}</p>
     }
 
     return (
