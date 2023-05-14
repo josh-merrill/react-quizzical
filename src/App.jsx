@@ -1,36 +1,36 @@
-import React, { useState, useEffect } from "react";
-import Form from "./components/Form";
-import Quiz from "./components/Quiz";
+import React, { useState, useEffect } from "react"
+import Form from "./components/Form"
+import Quiz from "./components/Quiz"
 
 export default function App() {
   // Initialize state for Quizzical
-  const [quizData, setQuizData] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [quizStarted, setQuizStarted] = useState(false);
-  const [categories, setCategories] = useState([]);
+  const [quizData, setQuizData] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
+  const [quizStarted, setQuizStarted] = useState(false)
+  const [categories, setCategories] = useState([])
   const [inputValues, setInputValues] = useState({
     number: 5,
     category: "any",
     difficulty: "any",
     type: "any",
-  });
+  })
 
   // Handle API side effects and setQuizData state using the Open Trivia DB endpoint
   useEffect(() => {
     async function fetchData() {
-      setIsLoading(true);
-      const res = await fetch(setFetchParameters());
-      const data = await res.json();
+      setIsLoading(true)
+      const res = await fetch(setFetchParameters())
+      const data = await res.json()
 
       // If the API response code is not 0, alert the user
       if (data.response_code !== 0) {
-        console.log(data.response_code);
+        console.log(data.response_code)
         alert(
           `No Results. The API doesn't have enough questions for your query. (Ex. Asking for 50 Questions in a Category that only has 20.) Please fix the errors in the form and resubmit.`
-        );
+        )
       }
 
-      const dataArray = data.results;
+      const dataArray = data.results
       setQuizData(
         dataArray.map((item) => ({
           category: item.category,
@@ -52,72 +52,72 @@ export default function App() {
             parentElement: item.question,
           })),
         }))
-      );
-      setIsLoading(false);
+      )
+      setIsLoading(false)
     }
 
     if (quizStarted) {
-      fetchData();
+      fetchData()
     }
-  }, [quizStarted]);
+  }, [quizStarted])
 
   // Set the Open Trivia DB fetch request parameters on App initialization
   function setFetchParameters() {
-    const { number, category, difficulty, type } = inputValues;
-    let baseUrl = `https://opentdb.com/api.php?amount=${number}`;
+    const { number, category, difficulty, type } = inputValues
+    let baseUrl = `https://opentdb.com/api.php?amount=${number}`
 
     if (category != "any") {
-      baseUrl += `&category=${category}`;
+      baseUrl += `&category=${category}`
     }
     if (difficulty != "any") {
-      baseUrl += `&difficulty=${difficulty}`;
+      baseUrl += `&difficulty=${difficulty}`
     }
     if (type != "any") {
-      baseUrl += `&type=${type}`;
+      baseUrl += `&type=${type}`
     }
-    return baseUrl;
+    return baseUrl
   }
 
   // Make a fetch call to Open Trivia DB categories endpoint on App initialization
   useEffect(() => {
     async function fetchCategories() {
-      const response = await fetch("https://opentdb.com/api_category.php");
-      const data = await response.json();
-      setCategories(data.trivia_categories);
+      const response = await fetch("https://opentdb.com/api_category.php")
+      const data = await response.json()
+      setCategories(data.trivia_categories)
     }
-    fetchCategories();
-  }, []);
+    fetchCategories()
+  }, [])
 
   // Handle form event changes and set the setInputValues state
   function handleChange(event) {
-    const { name, value, type } = event.target;
+    const { name, value, type } = event.target
     // Store the form input changes in state
     setInputValues((previousValues) => ({
       ...previousValues,
       // If the name of the input type is "number"
       // return the value of the number, else return the value
       [name]: event.target.type === "number" ? getNumberValue(value) : value,
-    }));
+    }))
   }
 
   // If the form's input type is a number, get the number
   // value and set conditions based on it's value
   function getNumberValue(value) {
-    const numberValue = Number(value);
-    return numberValue > 50 ? 50 : numberValue < 1 ? 1 : numberValue;
+    const numberValue = Number(value)
+    return numberValue > 50 ? 50 : numberValue < 1 ? 1 : numberValue
   }
 
   function randomizedArray(array) {
     const randomizedArr = array.map(() =>
       Math.floor(Math.random() * array.length)
-    );
-    const uniqueArr = [...new Set(randomizedArr)];
-    if (uniqueArr.length < array.length) return randomizedArray(array);
-    return randomizedArr.map((num) => array[num]);
+    )
+    const uniqueArr = [...new Set(randomizedArr)]
+    if (uniqueArr.length < array.length) return randomizedArray(array)
+    return randomizedArr.map((num) => array[num])
   }
 
   function toggleQuizStarted() {
-    setQuizStarted((prevState) => !prevState);
+    setQuizStarted((prevState) => !prevState)
   }
 
   function selectAnswer(id, parent) {
@@ -130,10 +130,10 @@ export default function App() {
                 ...answer,
                 isSelected: answer.id === id ? !answer.isSelected : false,
               }
-            : answer;
+            : answer
         }),
       }))
-    );
+    )
   }
 
   return (
@@ -142,6 +142,7 @@ export default function App() {
             <div className="loading--container">
               <div className="loading--spinner">
               </div>
+              <h2 className="loading--title">Loading...</h2>
             </div> :
             null
           }
@@ -164,5 +165,5 @@ export default function App() {
       <div className="blob--top"></div>
       <div className="blob--bottom"></div>
     </main>
-  );
+  )
 }
