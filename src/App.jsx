@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react"
+import { useState, useEffect } from "react"
 import Form from "./components/Form"
 import Quiz from "./components/Quiz"
+import Loader from "./components/Loader"
 
 export default function App() {
   // Initialize state for Quizzical
@@ -90,7 +91,7 @@ export default function App() {
 
   // Handle form event changes and set the setInputValues state
   function handleChange(event) {
-    const { name, value, type } = event.target
+    const { name, value } = event.target
     // Store the form input changes in state
     setInputValues((previousValues) => ({
       ...previousValues,
@@ -139,11 +140,7 @@ export default function App() {
   return (
     <main className="main--app">
       {isLoading ?
-            <div className="loading--container">
-              <div className="loading--spinner">
-              </div>
-              <h2 className="loading--title">Loading...</h2>
-            </div> :
+            <Loader /> :
             null
           }
 
