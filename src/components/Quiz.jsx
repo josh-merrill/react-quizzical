@@ -1,16 +1,15 @@
-import { useState } from "react";
-import Answer from "./Answer";
-import { calculateQuizResult } from "./quizUtils";
+import { useState } from "react"
+import Answer from "./Answer"
+import { calculateQuizResult } from "./quizUtils"
 
 export default function Quiz(props) {
-  const [quizComplete, setQuizComplete] = useState(false);
-  const [answers, setAnswers] = useState([]);
+  const [quizComplete, setQuizComplete] = useState(false)
 
-  const { quizData, handleClick, selectAnswer, userAnswerData } = props;
+  const { quizData, handleClick, selectAnswer, userAnswerData } = props
 
   function handleCheckAnswers() {
-    const result = calculateQuizResult(quizData, userAnswerData);
-    return <p className="quiz--score">{result}</p>;
+    const result = calculateQuizResult(quizData, userAnswerData)
+    return <p className="quiz--score">{result}</p>
   }
 
   return (
@@ -24,8 +23,9 @@ export default function Quiz(props) {
       {!quizComplete ? (
         <div className="quiz--results">
           <button
-            className="button--large"
-            onClick={() => setQuizComplete(true)}
+            className={"button--large"}
+            onClick={() => {setQuizComplete(true)}}
+            disabled={userAnswerData.length === quizData.length ? false : true}
           >
             Check answers
           </button>
@@ -33,11 +33,11 @@ export default function Quiz(props) {
       ) : (
         <div className="quiz--results">
           {handleCheckAnswers()}
-          <button className="button--large" onClick={handleClick}>
+          <button className="reset button--large" onClick={handleClick}>
             Reset quiz
           </button>
         </div>
       )}
     </section>
-  );
+  )
 }

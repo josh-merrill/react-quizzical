@@ -4,14 +4,15 @@ export default function Form(props) {
 
   const categoryOptions = categories.map((category) => {
       return (
-        <option 
-          key={category.id} 
+        <option
+          key={category.id}
           value={category.id}>
           {category.name}
         </option>
       )
     })
-  
+
+
     return (
         <section className="form--section">
             <h1 className="welcome--title">Quizzical</h1>
