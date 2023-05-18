@@ -21,8 +21,9 @@ export default function Form(props) {
             <h1 className="welcome--title">Quizzical</h1>
             <p className="welcome--desc">Challenge your mind, expand your knowledge.</p>
             <div className="input-form">
-                <label name="number" className="form--label">Choose your number of questions</label>
+                <label htmlFor="number" name="number" className="form--label">Choose your number of questions</label>
                 <input
+                  id="number"
                     type="number"
                     min="1"
                     max="50"
@@ -31,19 +32,21 @@ export default function Form(props) {
                     value={inputValues.number}
                     onChange={handleChange}
                 />
-                <label name="category" className="form--label">Choose your category</label>
+                <label htmlFor="category" name="category" className="form--label">Choose your category</label>
                 <select
-                    className="form-control"
+                    id="category"
                     name="category"
+                    className="form-control"
                     value={inputValues.category}
                     onChange={handleChange}
                 >
                     {categoryOptions}
                 </select>
-                <label name="difficulty" className="form--label">Set your difficulty level</label>
+                <label htmlFor="difficulty" name="difficulty" className="form--label">Set your difficulty level</label>
                 <select
-                    className="form-control"
+                    id="difficulty"
                     name="difficulty"
+                    className="form-control"
                     value={inputValues.difficulty}
                     onChange={handleChange}
                 >
@@ -52,10 +55,11 @@ export default function Form(props) {
                     <option value="medium">Medium</option>
                     <option value="hard">Hard</option>
                 </select>
-                <label name="category" className="form--label">Choose your total questions</label>
+                <label htmlFor="type" name="category" className="form--label">Choose your question type</label>
                 <select
-                    className="form-control"
+                    id="type"
                     name="type"
+                    className="form-control"
                     value={inputValues.type}
                     onChange={handleChange}
                 >
