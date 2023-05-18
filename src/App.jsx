@@ -87,14 +87,17 @@ export default function App() {
   }, [quizStarted])
 
   function randomizedArray(array) {
-    const randomizedArr = array.map(() =>
-      Math.floor(Math.random() * array.length)
-    )
+    const length = array.length;
+    const randomizedArr = new Array(length);
 
-    const uniqueArr = [...new Set(randomizedArr)]
-    if (uniqueArr.length < array.length) return randomizedArray(array)
+    for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * (i + 1));
+      let temp = array[i];
+      randomizedArr[i] = randomizedArr[randomIndex];
+      randomizedArr[randomIndex] = temp;
+    }
 
-    return randomizedArr.map((num) => array[num])
+    return randomizedArr;
   }
 
   function handleChange(event) {
