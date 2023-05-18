@@ -1,21 +1,17 @@
-// import React, { useState, useEffect } from 'react'
-
 export default function Form(props) {
 
-    // Destructure all incoming props
-    const {categories, inputValues, handleChange, handleClick} = props
+  const { categories, inputValues, handleChange, handleClick } = props
 
-    // Map over the categories prop and render each category value and name as an option dropdown
-    const categoryOptions = categories.map(category => {
-        return (
-            <option
-                key={category.id}
-                value={category.id}>
-                {category.name}
-            </option>
-        )
+  const categoryOptions = categories.map((category) => {
+      return (
+        <option 
+          key={category.id} 
+          value={category.id}>
+          {category.name}
+        </option>
+      )
     })
-
+  
     return (
         <section className="form--section">
             <h1 className="welcome--title">Quizzical</h1>
