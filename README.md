@@ -29,9 +29,14 @@ Learn more about this project below 👇
 
 ## Screenshots
 
-![](./public/screenshot.jpg)
-![Quiz Screen](./screenshots/quiz-screen.jpg)
-![Result Screen](./screenshots/result-screen.jpg)
+### Quiz Form
+![Quiz Form](./public/screenshots/quiz-form.jpg)
+
+### Quiz Screen
+![Quiz Screen](./public/screenshots/quiz-screen.jpg)
+
+### Quiz Answers
+![Result Screen](./public/screenshots/quiz-answers.jpg)
 
 
 ## How to Play
