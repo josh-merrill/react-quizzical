@@ -66,7 +66,7 @@ Learn more about this project below 👇
 - Flexbox
 - CSS Grid
 - [React](https://reactjs.org/) - JS library
-- React Hooks (useState, useEffect)
+- React Hooks (`useState`, `useEffect`)
 - Fetch API for data retrieval from the Open Trivia Database API
 - nanoid for generating unique keys
 - HTML entities decoding using html-entities library
@@ -87,7 +87,7 @@ My goal for this project was to develop a small quiz web application using React
 
 I built this application using HTML/CSS and React JS with Vite as the development tool. I first set up a new React project using Vite and created the main components, including Form, Quiz, Answer, and Loader. 
 
-Throughout the development process, I leveraged React Hooks like useState and useEffect to efficiently manage state and handle side effects. By integrating the Open Trivia Database API, I was able to fetch quiz data based on user settings, making the app dynamic and adaptable. 
+Throughout the development process, I leveraged React Hooks like `useState` and `useEffect` to efficiently manage state and handle side effects. By integrating the Open Trivia Database API, I was able to fetch quiz data based on user settings, making the app dynamic and adaptable. 
 
 Additionally, I introduced user interactivity by allowing users to select answers and receive real-time feedback. After completion, the app calculates and displays the quiz results, providing users with their scores.
 
